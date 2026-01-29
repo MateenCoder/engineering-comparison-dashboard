@@ -95,10 +95,10 @@ export default function EngineeringComparisonDashboard() {
                         Engineering Comparison 2026
                     </span>
                 </div>
-                <h1 className="text-4xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight flex flex-col items-center">
-                    <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-1 md:gap-6">
+                <h1 className="text-2xl min-[400px]:text-3xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight flex flex-col items-center">
+                    <div className="flex items-center justify-center gap-2 md:gap-6">
                         <span style={{ color: colors.electrical }}>Electrical</span>
-                        <span className="text-slate-200 text-2xl md:text-5xl">vs</span>
+                        <span className="text-slate-200 text-lg md:text-5xl">vs</span>
                         <span style={{ color: colors.computer }}>Computer</span>
                     </div>
                     <span className="text-slate-200">Engineering</span>
@@ -197,19 +197,19 @@ export default function EngineeringComparisonDashboard() {
                             <BarChart
                                 data={benchmarkData}
                                 layout="vertical"
-                                margin={{ left: 40, right: 60, top: 20, bottom: 20 }}
+                                margin={{ left: 10, right: 40, top: 20, bottom: 20 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" stroke="#ffffff15" />
                                 <XAxis
                                     type="number"
-                                    tick={{ fill: '#e2e8f0', fontSize: 14, fontWeight: 600 }}
+                                    tick={{ fill: '#e2e8f0', fontSize: 12, fontWeight: 600 }}
                                     stroke="#ffffff40"
                                 />
                                 <YAxis
                                     type="category"
                                     dataKey="metric"
-                                    width={180}
-                                    tick={{ fill: '#f1f5f9', fontSize: 14, fontWeight: 600 }}
+                                    width={120}
+                                    tick={{ fill: '#f1f5f9', fontSize: 11, fontWeight: 600 }}
                                     stroke="#ffffff40"
                                 />
                                 <Tooltip
