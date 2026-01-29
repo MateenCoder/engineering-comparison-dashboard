@@ -95,10 +95,10 @@ export default function EngineeringComparisonDashboard() {
                         Engineering Comparison 2026
                     </span>
                 </div>
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight flex flex-col items-center">
-                    <div className="flex items-center gap-4 md:gap-6">
+                <h1 className="text-4xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight flex flex-col items-center">
+                    <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-1 md:gap-6">
                         <span style={{ color: colors.electrical }}>Electrical</span>
-                        <span className="text-slate-200 text-4xl md:text-5xl">vs</span>
+                        <span className="text-slate-200 text-2xl md:text-5xl">vs</span>
                         <span style={{ color: colors.computer }}>Computer</span>
                     </div>
                     <span className="text-slate-200">Engineering</span>
@@ -111,15 +111,15 @@ export default function EngineeringComparisonDashboard() {
 
             {/* RADAR CHART SECTION */}
             <section className="mb-16 gpu-layer">
-                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl">
+                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
                     <div className="flex items-center gap-3 mb-4">
                         <div className="w-1 h-10 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
                         <h2 className="text-3xl md:text-4xl font-bold">Qualitative Dimensions Radar</h2>
                     </div>
-                    <p className="text-slate-400 mb-8 text-lg">Comparing key qualitative attributes across both engineering disciplines</p>
+                    <p className="text-slate-400 mb-8 text-base md:text-lg">Comparing key qualitative attributes across both engineering disciplines</p>
 
                     {/* THE ACTUAL RADAR CHART */}
-                    <div className="w-full bg-slate-900/40 rounded-2xl p-8 border border-white/10" style={{ height: '600px' }}>
+                    <div className="w-full bg-slate-900/40 rounded-2xl p-4 md:p-8 border border-white/10" style={{ height: '400px', minHeight: '400px' }}>
                         <ResponsiveContainer width="100%" height="100%">
                             <RadarChart data={radarData} cx="50%" cy="50%">
                                 <PolarGrid stroke="#ffffff30" strokeWidth={1.5} />
@@ -184,15 +184,15 @@ export default function EngineeringComparisonDashboard() {
 
             {/* BAR CHART SECTION */}
             <section className="mb-16 gpu-layer">
-                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl">
+                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
                     <div className="flex items-center gap-3 mb-4">
                         <div className="w-1 h-10 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
                         <h2 className="text-3xl md:text-4xl font-bold">Quantitative Benchmarks</h2>
                     </div>
-                    <p className="text-slate-400 mb-8 text-lg">Hard data points comparing measurable metrics between both fields</p>
+                    <p className="text-slate-400 mb-8 text-base md:text-lg">Hard data points comparing measurable metrics between both fields</p>
 
                     {/* THE ACTUAL BAR CHART */}
-                    <div className="w-full bg-slate-900/40 rounded-2xl p-8 border border-white/10" style={{ height: '600px' }}>
+                    <div className="w-full bg-slate-900/40 rounded-2xl p-4 md:p-8 border border-white/10" style={{ height: '400px', minHeight: '400px' }}>
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart
                                 data={benchmarkData}
@@ -258,7 +258,7 @@ export default function EngineeringComparisonDashboard() {
 
             {/* Feature Grid Comparison */}
             <section className="mb-16 gpu-layer">
-                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl">
+                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
                     <div className="flex items-center gap-3 mb-4">
                         <div className="w-1 h-10 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
                         <h2 className="text-3xl md:text-4xl font-bold">Feature Matrix Comparison</h2>
@@ -323,7 +323,7 @@ export default function EngineeringComparisonDashboard() {
 
             {/* Use-Case Analysis */}
             <section className="mb-12 gpu-layer">
-                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl">
+                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
                     <div className="flex items-center gap-3 mb-4">
                         <div className="w-1 h-10 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
                         <h2 className="text-3xl md:text-4xl font-bold">Persona-Based Recommendations</h2>
