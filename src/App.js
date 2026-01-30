@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { Check, X, Zap, Cpu, TrendingUp, Users, DollarSign, Clock } from 'lucide-react';
 
 export default function EngineeringComparisonDashboard() {
+    // Responsive state
+    const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     // Define brand colors
     const colors = {
         electrical: '#00D9FF', // Electric Blue
@@ -125,8 +133,8 @@ export default function EngineeringComparisonDashboard() {
                                 data={radarData}
                                 cx="50%"
                                 cy="50%"
-                                outerRadius="50%"
-                                margin={{ top: 10, right: 60, bottom: 0, left: 60 }}
+                                outerRadius={isMobile ? "50%" : "80%"}
+                                margin={isMobile ? { top: 10, right: 60, bottom: 0, left: 60 } : { top: 10, right: 30, bottom: 0, left: 30 }}
                             >
                                 <PolarGrid stroke="#ffffff30" strokeWidth={1.5} />
                                 <PolarAngleAxis
