@@ -232,7 +232,7 @@ export default function EngineeringComparisonDashboard() {
                                     stroke="#ffffff20"
                                 />
                                 <Tooltip
-                                    position={isMobile ? { x: 10, y: 215 } : undefined}
+                                    position={isMobile ? { x: 10, y: 245 } : undefined}
                                     allowEscapeViewBox={true}
                                     wrapperStyle={{ zIndex: 100 }}
                                     contentStyle={{
