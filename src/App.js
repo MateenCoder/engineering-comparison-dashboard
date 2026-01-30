@@ -118,12 +118,12 @@ export default function EngineeringComparisonDashboard() {
             </header>
 
             {/* RADAR CHART SECTION */}
-            <section className="mb-16 gpu-layer">
+            <section className="mb-16">
                 <div className="bg-slate-900/50 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
                         <div>
-                            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2 stabilize">Qualitative Dimensions</h2>
+                            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">Qualitative Dimensions</h2>
                             <p className="text-slate-400 text-sm md:text-base leading-relaxed">Comparing key qualitative attributes across both engineering disciplines</p>
                         </div>
                     </div>
@@ -199,12 +199,12 @@ export default function EngineeringComparisonDashboard() {
             </section>
 
             {/* BAR CHART SECTION */}
-            <section className="mb-16 gpu-layer">
+            <section className="mb-16">
                 <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
                         <div>
-                            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2 stabilize">Quantitative Benchmarks</h2>
+                            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">Quantitative Benchmarks</h2>
                             <p className="text-slate-400 text-sm md:text-base leading-relaxed">Hard data points comparing measurable metrics between both fields</p>
                         </div>
                     </div>
