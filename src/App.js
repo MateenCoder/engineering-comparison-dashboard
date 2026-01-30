@@ -121,7 +121,13 @@ export default function EngineeringComparisonDashboard() {
                     {/* THE ACTUAL RADAR CHART */}
                     <div className="w-full bg-slate-900/40 rounded-2xl p-4 md:p-8 border border-white/10" style={{ height: '400px', minHeight: '400px' }}>
                         <ResponsiveContainer width="100%" height="100%">
-                            <RadarChart data={radarData} cx="50%" cy="50%">
+                            <RadarChart
+                                data={radarData}
+                                cx="50%"
+                                cy="50%"
+                                outerRadius="65%"
+                                margin={{ top: 10, right: 30, bottom: 0, left: 30 }}
+                            >
                                 <PolarGrid stroke="#ffffff30" strokeWidth={1.5} />
                                 <PolarAngleAxis
                                     dataKey="dimension"
@@ -129,7 +135,7 @@ export default function EngineeringComparisonDashboard() {
                                     stroke="#ffffff20"
                                 />
                                 <PolarRadiusAxis
-                                    angle={90}
+                                    angle={30}
                                     domain={[0, 100]}
                                     tick={{ fill: '#94a3b8', fontSize: 11, fontWeight: 500 }}
                                     stroke="#ffffff10"
