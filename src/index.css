@@ -30,3 +30,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Disable focus outline and tap highlight for charts */
+.recharts-wrapper,
+.recharts-surface,
+.recharts-legend-item {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+path.recharts-rectangle:focus,
+path.recharts-radar-polygon:focus {
+  outline: none !important;
+}
