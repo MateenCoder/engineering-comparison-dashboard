@@ -92,363 +92,328 @@ export default function EngineeringComparisonDashboard() {
         }
     ];
 
-    // Custom Radar Label (Tick) Component for better spacing and mobile interaction
-    const RadarTick = ({ payload, x, y, cx, cy, ...rest }) => {
-        const radius = Math.sqrt(Math.pow(x - cx, 2) + Math.pow(y - cy, 2));
-        const extraOffset = isMobile ? 25 : 15; // Increased spacing
-        const newRadius = radius + extraOffset;
+}
+    ];
 
-        const cos = (x - cx) / radius;
-        const sin = (y - cy) / radius;
-
-        const newX = cx + newRadius * cos;
-        const newY = cy + newRadius * sin;
-
-        return (
-            <text
-                {...rest}
-                x={newX}
-                y={newY}
-                textAnchor={newX > cx ? 'start' : newX < cx ? 'end' : 'middle'}
-                dominantBaseline="central"
-                className="cursor-pointer select-none"
-                style={{
-                    fill: '#f1f5f9',
-                    fontSize: isMobile ? '10px' : '12px',
-                    fontWeight: 500,
-                    pointerEvents: 'auto'
-                }}
-            >
-                {payload.value}
-            </text>
-        );
-    };
-
-    // Reveal on scroll component
-    // Direct static rendering - no animations
-    return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950 text-white p-4 md:p-8 gpu-layer">
-            {/* Hero Header */}
-            <header className="text-center mb-16">
-                <div className="inline-block mb-6 px-4 py-1.5 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 shadow-sm">
-                    <span className="text-xs md:text-sm font-semibold tracking-wide uppercase bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                        Engineering Comparison 2026
-                    </span>
+// Reveal on scroll component
+// Direct static rendering - no animations
+return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950 text-white p-4 md:p-8 gpu-layer">
+        {/* Hero Header */}
+        <header className="text-center mb-16">
+            <div className="inline-block mb-6 px-4 py-1.5 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 shadow-sm">
+                <span className="text-xs md:text-sm font-semibold tracking-wide uppercase bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                    Engineering Comparison 2026
+                </span>
+            </div>
+            <h1 className="text-4xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight flex flex-col items-center tracking-tighter md:tracking-tight">
+                <div className="flex items-center justify-center gap-2 md:gap-6">
+                    <span style={{ color: colors.electrical }}>Electrical</span>
+                    <span className="text-slate-200 text-xl md:text-5xl">vs</span>
+                    <span style={{ color: colors.computer }}>Computer</span>
                 </div>
-                <h1 className="text-4xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight flex flex-col items-center tracking-tighter md:tracking-tight">
-                    <div className="flex items-center justify-center gap-2 md:gap-6">
-                        <span style={{ color: colors.electrical }}>Electrical</span>
-                        <span className="text-slate-200 text-xl md:text-5xl">vs</span>
-                        <span style={{ color: colors.computer }}>Computer</span>
-                    </div>
-                    <span className="text-slate-200 text-2xl md:text-8xl">Engineering</span>
-                </h1>
-                <p className="text-base md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
-                    A comprehensive, data-driven analysis to help you choose the right engineering path.
-                    Compare career prospects, technical focus areas, and industry demand.
-                </p>
-            </header>
+                <span className="text-slate-200 text-2xl md:text-8xl">Engineering</span>
+            </h1>
+            <p className="text-base md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed px-4">
+                A comprehensive, data-driven analysis to help you choose the right engineering path.
+                Compare career prospects, technical focus areas, and industry demand.
+            </p>
+        </header>
 
-            {/* RADAR CHART SECTION */}
-            <section className="mb-16 gpu-layer">
-                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-1.5 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
-                        <h2 className="text-xl md:text-3xl font-bold tracking-tight">Qualitative Dimensions</h2>
-                    </div>
-                    <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Comparing key qualitative attributes across both engineering disciplines</p>
-
-                    {/* THE ACTUAL RADAR CHART */}
-                    <div className="w-full bg-slate-900/40 rounded-2xl p-4 md:p-8 border border-white/10" style={{ height: '400px', minHeight: '400px' }}>
-                        <ResponsiveContainer width="100%" height="100%">
-                            <RadarChart
-                                data={radarData}
-                                cx="50%"
-                                cy="50%"
-                                outerRadius={isMobile ? "65%" : "80%"}
-                                margin={isMobile ? { top: 10, right: 45, bottom: 0, left: 45 } : { top: 10, right: 30, bottom: 0, left: 30 }}
-                            >
-                                <PolarGrid
-                                    stroke="#ffffff30"
-                                    strokeWidth={1.5}
-                                    style={{ pointerEvents: isMobile ? 'none' : 'auto' }}
-                                />
-                                <PolarAngleAxis
-                                    dataKey="dimension"
-                                    tick={<RadarTick cx="50%" cy="50%" />}
-                                    stroke="#ffffff20"
-                                />
-                                <PolarRadiusAxis
-                                    angle={30}
-                                    domain={[0, 100]}
-                                    tick={false}
-                                    stroke="#ffffff10"
-                                    axisLine={false}
-                                />
-                                <Radar
-                                    name="Electrical Engineering"
-                                    dataKey="electrical"
-                                    stroke={colors.electrical}
-                                    fill={colors.electrical}
-                                    fillOpacity={0.4}
-                                    strokeWidth={3}
-                                    isAnimationActive={false}
-                                    style={{ pointerEvents: isMobile ? 'none' : 'auto' }}
-                                />
-                                <Radar
-                                    name="Computer Engineering"
-                                    dataKey="computer"
-                                    stroke={colors.computer}
-                                    fill={colors.computer}
-                                    fillOpacity={0.4}
-                                    strokeWidth={3}
-                                    isAnimationActive={false}
-                                    style={{ pointerEvents: isMobile ? 'none' : 'auto' }}
-                                />
-                                <Legend
-                                    wrapperStyle={{ paddingTop: '50px' }}
-                                    iconType="circle"
-                                    iconSize={10}
-                                    formatter={(value, entry) => {
-                                        const color = entry.dataKey === 'electrical' ? colors.electrical : colors.computer;
-                                        return <span style={{ color: color, fontSize: '14px', fontWeight: 700, marginLeft: '4px' }}>{value}</span>;
-                                    }}
-                                />
-                                <Tooltip
-                                    contentStyle={{
-                                        backgroundColor: 'rgba(15, 23, 42, 0.98)',
-                                        border: '1px solid rgba(255,255,255,0.3)',
-                                        borderRadius: '16px',
-                                        backdropFilter: 'blur(12px)',
-                                        padding: '16px',
-                                        boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
-                                    }}
-                                    labelStyle={{ color: '#f1f5f9', fontWeight: 700, marginBottom: '12px', fontSize: '15px' }}
-                                    formatter={(value, name) => {
-                                        const color = name === 'Electrical Engineering' ? colors.electrical : colors.computer;
-                                        return [<span style={{ color: color, fontWeight: 600 }}>{value}</span>, name];
-                                    }}
-                                    itemStyle={{ fontSize: '14px' }}
-                                />
-                            </RadarChart>
-                        </ResponsiveContainer>
-                    </div>
+        {/* RADAR CHART SECTION */}
+        <section className="mb-16 gpu-layer">
+            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="w-1.5 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
+                    <h2 className="text-xl md:text-3xl font-bold tracking-tight">Qualitative Dimensions</h2>
                 </div>
-            </section>
+                <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Comparing key qualitative attributes across both engineering disciplines</p>
 
-            {/* BAR CHART SECTION */}
-            <section className="mb-16 gpu-layer">
-                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-1.5 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
-                        <h2 className="text-xl md:text-3xl font-bold tracking-tight">Quantitative Benchmarks</h2>
-                    </div>
-                    <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Hard data points comparing measurable metrics between both fields</p>
-
-                    {/* THE ACTUAL BAR CHART */}
-                    <div className="w-full bg-slate-900/40 rounded-2xl p-4 md:p-8 border border-white/10" style={{ height: '400px', minHeight: '400px' }}>
-                        <ResponsiveContainer width="100%" height="100%">
-                            <BarChart
-                                data={benchmarkData}
-                                layout="vertical"
-                                margin={{ left: 10, right: 40, top: 20, bottom: 20 }}
-                            >
-                                <CartesianGrid strokeDasharray="3 3" stroke="#ffffff15" />
-                                <XAxis
-                                    type="number"
-                                    tick={{ fill: '#e2e8f0', fontSize: 12, fontWeight: 600 }}
-                                    stroke="#ffffff40"
-                                />
-                                <YAxis
-                                    type="category"
-                                    dataKey="metric"
-                                    width={160}
-                                    tick={{ fill: '#f1f5f9', fontSize: 12, fontWeight: 500, textAnchor: 'start' }}
-                                    dx={-150}
-                                    stroke="#ffffff20"
-                                />
-                                <Tooltip
-                                    position={isMobile ? { x: 10, y: 0 } : undefined}
-                                    allowEscapeViewBox={true}
-                                    wrapperStyle={{ zIndex: 100 }}
-                                    contentStyle={{
-                                        backgroundColor: 'rgba(15, 23, 42, 0.98)',
-                                        border: '1px solid rgba(255,255,255,0.3)',
-                                        borderRadius: '16px',
-                                        backdropFilter: 'blur(12px)',
-                                        padding: isMobile ? '12px' : '16px',
-                                        boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
-                                    }}
-                                    labelStyle={{ color: '#f1f5f9', fontWeight: 700, marginBottom: isMobile ? '8px' : '12px', fontSize: isMobile ? '13px' : '15px' }}
-                                    formatter={(value, name) => {
-                                        const color = name === 'Electrical Engineering' ? colors.electrical : colors.computer;
-                                        return [<span style={{ color: color, fontWeight: 600 }}>{value}</span>, name];
-                                    }}
-                                    itemStyle={{ fontSize: isMobile ? '12px' : '14px' }}
-                                    cursor={{ fill: 'rgba(255,255,255,0.05)' }}
-                                />
-                                <Legend
-                                    wrapperStyle={{ paddingTop: '40px' }}
-                                    iconType="circle"
-                                    iconSize={10}
-                                    formatter={(value, entry) => {
-                                        const color = entry.dataKey === 'electrical' ? colors.electrical : colors.computer;
-                                        return <span style={{ color: color, fontSize: '14px', fontWeight: 700, marginLeft: '4px' }}>{value}</span>;
-                                    }}
-                                />
-                                <Bar
-                                    dataKey="electrical"
-                                    fill={colors.electrical}
-                                    name="Electrical Engineering"
-                                    radius={[0, 10, 10, 0]}
-                                    isAnimationActive={false}
-                                />
-                                <Bar
-                                    dataKey="computer"
-                                    fill={colors.computer}
-                                    name="Computer Engineering"
-                                    radius={[0, 10, 10, 0]}
-                                    isAnimationActive={false}
-                                />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
+                {/* THE ACTUAL RADAR CHART */}
+                <div className="w-full bg-slate-900/40 rounded-2xl p-4 md:p-8 border border-white/10" style={{ height: '400px', minHeight: '400px' }}>
+                    <ResponsiveContainer width="100%" height="100%">
+                        <RadarChart
+                            data={radarData}
+                            cx="50%"
+                            cy="50%"
+                            outerRadius={isMobile ? "65%" : "80%"}
+                            margin={isMobile ? { top: 10, right: 45, bottom: 0, left: 45 } : { top: 10, right: 30, bottom: 0, left: 30 }}
+                        >
+                            <PolarGrid stroke="#ffffff30" strokeWidth={1.5} />
+                            <PolarAngleAxis
+                                dataKey="dimension"
+                                tick={{ fill: '#f1f5f9', fontSize: isMobile ? 11 : 12, fontWeight: 500 }}
+                                stroke="#ffffff20"
+                            />
+                            <PolarRadiusAxis
+                                angle={30}
+                                domain={[0, 100]}
+                                tick={false}
+                                stroke="#ffffff10"
+                                axisLine={false}
+                            />
+                            <Radar
+                                name="Electrical Engineering"
+                                dataKey="electrical"
+                                stroke={colors.electrical}
+                                fill={colors.electrical}
+                                fillOpacity={0.4}
+                                strokeWidth={3}
+                                isAnimationActive={false}
+                            />
+                            <Radar
+                                name="Computer Engineering"
+                                dataKey="computer"
+                                stroke={colors.computer}
+                                fill={colors.computer}
+                                fillOpacity={0.4}
+                                strokeWidth={3}
+                                isAnimationActive={false}
+                            />
+                            <Legend
+                                wrapperStyle={{ paddingTop: '50px' }}
+                                iconType="circle"
+                                iconSize={10}
+                                formatter={(value, entry) => {
+                                    const color = entry.dataKey === 'electrical' ? colors.electrical : colors.computer;
+                                    return <span style={{ color: color, fontSize: '14px', fontWeight: 700, marginLeft: '4px' }}>{value}</span>;
+                                }}
+                            />
+                            <Tooltip
+                                contentStyle={{
+                                    backgroundColor: 'rgba(15, 23, 42, 0.98)',
+                                    border: '1px solid rgba(255,255,255,0.3)',
+                                    borderRadius: '16px',
+                                    backdropFilter: 'blur(12px)',
+                                    padding: '16px',
+                                    boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+                                }}
+                                labelStyle={{ color: '#f1f5f9', fontWeight: 700, marginBottom: '12px', fontSize: '15px' }}
+                                formatter={(value, name) => {
+                                    const color = name === 'Electrical Engineering' ? colors.electrical : colors.computer;
+                                    return [<span style={{ color: color, fontWeight: 600 }}>{value}</span>, name];
+                                }}
+                                itemStyle={{ fontSize: '14px' }}
+                            />
+                        </RadarChart>
+                    </ResponsiveContainer>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            {/* Feature Grid Comparison */}
-            <section className="mb-16 gpu-layer">
-                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-1.5 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
-                        <h2 className="text-xl md:text-3xl font-bold tracking-tight">Feature Matrix</h2>
-                    </div>
-                    <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Side-by-side comparison of core competencies</p>
-
-                    <div className="overflow-x-auto">
-                        <table className="w-full">
-                            <thead>
-                                <tr className="border-b-2 border-white/20">
-                                    <th className="text-left py-5 px-6 text-slate-200 font-bold text-lg">Core Competency</th>
-                                    <th className="text-center py-5 px-6">
-                                        <div className="flex flex-col items-center gap-2">
-                                            <Zap className="w-6 h-6" style={{ color: colors.electrical }} />
-                                            <span className="text-base font-bold" style={{ color: colors.electrical }}>Electrical</span>
-                                        </div>
-                                    </th>
-                                    <th className="text-center py-5 px-6">
-                                        <div className="flex flex-col items-center gap-2">
-                                            <Cpu className="w-6 h-6" style={{ color: colors.computer }} />
-                                            <span className="text-base font-bold" style={{ color: colors.computer }}>Computer</span>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {features.map((item, index) => (
-                                    <tr
-                                        key={index}
-                                        className="border-b border-white/5 hover:bg-white/[0.04] transition-colors duration-200"
-                                    >
-                                        <td className="py-5 px-6 text-slate-100 font-medium">{item.feature}</td>
-                                        <td className="text-center py-5 px-6">
-                                            {item.electrical ? (
-                                                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cyan-500/20">
-                                                    <Check className="w-6 h-6" style={{ color: colors.electrical }} strokeWidth={3} />
-                                                </div>
-                                            ) : (
-                                                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-red-500/10">
-                                                    <X className="w-6 h-6 text-red-400/60" strokeWidth={2} />
-                                                </div>
-                                            )}
-                                        </td>
-                                        <td className="text-center py-5 px-6">
-                                            {item.computer ? (
-                                                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-purple-500/20">
-                                                    <Check className="w-6 h-6" style={{ color: colors.computer }} strokeWidth={3} />
-                                                </div>
-                                            ) : (
-                                                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-red-500/10">
-                                                    <X className="w-6 h-6 text-red-400/60" strokeWidth={2} />
-                                                </div>
-                                            )}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+        {/* BAR CHART SECTION */}
+        <section className="mb-16 gpu-layer">
+            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="w-1.5 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
+                    <h2 className="text-xl md:text-3xl font-bold tracking-tight">Quantitative Benchmarks</h2>
                 </div>
-            </section>
+                <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Hard data points comparing measurable metrics between both fields</p>
 
-            {/* Use-Case Analysis */}
-            <section className="mb-12 gpu-layer">
-                <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
-                    <div className="flex items-center gap-3 mb-4">
-                        <div className="w-1.5 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
-                        <h2 className="text-xl md:text-3xl font-bold tracking-tight">Recommendations</h2>
-                    </div>
-                    <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Which engineering path wins for different user profiles?</p>
+                {/* THE ACTUAL BAR CHART */}
+                <div className="w-full bg-slate-900/40 rounded-2xl p-4 md:p-8 border border-white/10" style={{ height: '400px', minHeight: '400px' }}>
+                    <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                            data={benchmarkData}
+                            layout="vertical"
+                            margin={{ left: 10, right: 40, top: 20, bottom: 20 }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" stroke="#ffffff15" />
+                            <XAxis
+                                type="number"
+                                tick={{ fill: '#e2e8f0', fontSize: 12, fontWeight: 600 }}
+                                stroke="#ffffff40"
+                            />
+                            <YAxis
+                                type="category"
+                                dataKey="metric"
+                                width={160}
+                                tick={{ fill: '#f1f5f9', fontSize: 12, fontWeight: 500, textAnchor: 'start' }}
+                                dx={-150}
+                                stroke="#ffffff20"
+                            />
+                            <Tooltip
+                                position={isMobile ? { x: 10, y: 0 } : undefined}
+                                allowEscapeViewBox={true}
+                                wrapperStyle={{ zIndex: 100 }}
+                                contentStyle={{
+                                    backgroundColor: 'rgba(15, 23, 42, 0.98)',
+                                    border: '1px solid rgba(255,255,255,0.3)',
+                                    borderRadius: '16px',
+                                    backdropFilter: 'blur(12px)',
+                                    padding: isMobile ? '12px' : '16px',
+                                    boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+                                }}
+                                labelStyle={{ color: '#f1f5f9', fontWeight: 700, marginBottom: isMobile ? '8px' : '12px', fontSize: isMobile ? '13px' : '15px' }}
+                                formatter={(value, name) => {
+                                    const color = name === 'Electrical Engineering' ? colors.electrical : colors.computer;
+                                    return [<span style={{ color: color, fontWeight: 600 }}>{value}</span>, name];
+                                }}
+                                itemStyle={{ fontSize: isMobile ? '12px' : '14px' }}
+                                cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                            />
+                            <Legend
+                                wrapperStyle={{ paddingTop: '40px' }}
+                                iconType="circle"
+                                iconSize={10}
+                                formatter={(value, entry) => {
+                                    const color = entry.dataKey === 'electrical' ? colors.electrical : colors.computer;
+                                    return <span style={{ color: color, fontSize: '14px', fontWeight: 700, marginLeft: '4px' }}>{value}</span>;
+                                }}
+                            />
+                            <Bar
+                                dataKey="electrical"
+                                fill={colors.electrical}
+                                name="Electrical Engineering"
+                                radius={[0, 10, 10, 0]}
+                                isAnimationActive={false}
+                            />
+                            <Bar
+                                dataKey="computer"
+                                fill={colors.computer}
+                                name="Computer Engineering"
+                                radius={[0, 10, 10, 0]}
+                                isAnimationActive={false}
+                            />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+            </div>
+        </section>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {useCases.map((useCase, index) => {
-                            const winnerColor = useCase.winner === 'electrical' ? colors.electrical : colors.computer;
-                            const winnerName = useCase.winner === 'electrical' ? 'Electrical Engineering' : 'Computer Engineering';
+        {/* Feature Grid Comparison */}
+        <section className="mb-16 gpu-layer">
+            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="w-1.5 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
+                    <h2 className="text-xl md:text-3xl font-bold tracking-tight">Feature Matrix</h2>
+                </div>
+                <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Side-by-side comparison of core competencies</p>
 
-                            return (
-                                <div
+                <div className="overflow-x-auto">
+                    <table className="w-full">
+                        <thead>
+                            <tr className="border-b-2 border-white/20">
+                                <th className="text-left py-5 px-6 text-slate-200 font-bold text-lg">Core Competency</th>
+                                <th className="text-center py-5 px-6">
+                                    <div className="flex flex-col items-center gap-2">
+                                        <Zap className="w-6 h-6" style={{ color: colors.electrical }} />
+                                        <span className="text-base font-bold" style={{ color: colors.electrical }}>Electrical</span>
+                                    </div>
+                                </th>
+                                <th className="text-center py-5 px-6">
+                                    <div className="flex flex-col items-center gap-2">
+                                        <Cpu className="w-6 h-6" style={{ color: colors.computer }} />
+                                        <span className="text-base font-bold" style={{ color: colors.computer }}>Computer</span>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {features.map((item, index) => (
+                                <tr
                                     key={index}
-                                    className="bg-white/[0.03] backdrop-blur-lg rounded-2xl p-7 border border-white/10 hover:bg-white/[0.07] hover:scale-[1.03] hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                                    className="border-b border-white/5 hover:bg-white/[0.04] transition-colors duration-200"
                                 >
-                                    <div
-                                        className="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5"
-                                        style={{
-                                            backgroundColor: `${winnerColor}20`,
-                                            color: winnerColor
-                                        }}
-                                    >
-                                        {useCase.icon}
-                                    </div>
+                                    <td className="py-5 px-6 text-slate-100 font-medium">{item.feature}</td>
+                                    <td className="text-center py-5 px-6">
+                                        {item.electrical ? (
+                                            <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cyan-500/20">
+                                                <Check className="w-6 h-6" style={{ color: colors.electrical }} strokeWidth={3} />
+                                            </div>
+                                        ) : (
+                                            <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-red-500/10">
+                                                <X className="w-6 h-6 text-red-400/60" strokeWidth={2} />
+                                            </div>
+                                        )}
+                                    </td>
+                                    <td className="text-center py-5 px-6">
+                                        {item.computer ? (
+                                            <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-purple-500/20">
+                                                <Check className="w-6 h-6" style={{ color: colors.computer }} strokeWidth={3} />
+                                            </div>
+                                        ) : (
+                                            <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-red-500/10">
+                                                <X className="w-6 h-6 text-red-400/60" strokeWidth={2} />
+                                            </div>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
 
-                                    <h3 className="text-xl font-bold mb-4 text-slate-50">
-                                        {useCase.persona}
-                                    </h3>
+        {/* Use-Case Analysis */}
+        <section className="mb-12 gpu-layer">
+            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="w-1.5 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
+                    <h2 className="text-xl md:text-3xl font-bold tracking-tight">Recommendations</h2>
+                </div>
+                <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Which engineering path wins for different user profiles?</p>
 
-                                    <div className="mb-5 pb-5 border-b border-white/10">
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-sm text-slate-400 font-medium">Winner:</span>
-                                            <span
-                                                className="font-bold text-base"
-                                                style={{ color: winnerColor }}
-                                            >
-                                                {winnerName}
-                                            </span>
-                                        </div>
-                                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {useCases.map((useCase, index) => {
+                        const winnerColor = useCase.winner === 'electrical' ? colors.electrical : colors.computer;
+                        const winnerName = useCase.winner === 'electrical' ? 'Electrical Engineering' : 'Computer Engineering';
 
-                                    <p className="text-sm text-slate-300 leading-relaxed">
-                                        {useCase.reason}
-                                    </p>
+                        return (
+                            <div
+                                key={index}
+                                className="bg-white/[0.03] backdrop-blur-lg rounded-2xl p-7 border border-white/10 hover:bg-white/[0.07] hover:scale-[1.03] hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                            >
+                                <div
+                                    className="inline-flex items-center justify-center w-14 h-14 rounded-xl mb-5"
+                                    style={{
+                                        backgroundColor: `${winnerColor}20`,
+                                        color: winnerColor
+                                    }}
+                                >
+                                    {useCase.icon}
+                                </div>
 
-                                    <div
-                                        className="mt-5 pt-5 border-t border-white/10 text-sm font-bold flex items-center gap-2"
-                                        style={{ color: winnerColor }}
-                                    >
-                                        <Check className="w-4 h-4" />
-                                        Recommended Choice
+                                <h3 className="text-xl font-bold mb-4 text-slate-50">
+                                    {useCase.persona}
+                                </h3>
+
+                                <div className="mb-5 pb-5 border-b border-white/10">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-sm text-slate-400 font-medium">Winner:</span>
+                                        <span
+                                            className="font-bold text-base"
+                                            style={{ color: winnerColor }}
+                                        >
+                                            {winnerName}
+                                        </span>
                                     </div>
                                 </div>
-                            );
-                        })}
-                    </div>
-                </div>
-            </section>
 
-            {/* Footer */}
-            <footer className="text-center py-8 text-slate-400 text-sm border-t border-white/10 mt-12">
-                <p className="mb-2 font-medium">Data-driven comparison dashboard • Built with React, Tailwind CSS & Recharts</p>
-                <p>Updated January 2026 • All metrics are industry averages</p>
-            </footer>
-        </div>
-    );
+                                <p className="text-sm text-slate-300 leading-relaxed">
+                                    {useCase.reason}
+                                </p>
+
+                                <div
+                                    className="mt-5 pt-5 border-t border-white/10 text-sm font-bold flex items-center gap-2"
+                                    style={{ color: winnerColor }}
+                                >
+                                    <Check className="w-4 h-4" />
+                                    Recommended Choice
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="text-center py-8 text-slate-400 text-sm border-t border-white/10 mt-12">
+            <p className="mb-2 font-medium">Data-driven comparison dashboard • Built with React, Tailwind CSS & Recharts</p>
+            <p>Updated January 2026 • All metrics are industry averages</p>
+        </footer>
+    </div>
+);
 }
