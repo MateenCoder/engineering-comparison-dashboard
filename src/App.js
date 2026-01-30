@@ -232,7 +232,7 @@ export default function EngineeringComparisonDashboard() {
                                     stroke="#ffffff20"
                                 />
                                 <Tooltip
-                                    position={isMobile ? { x: 10, y: 0 } : undefined}
+                                    position={isMobile ? { x: 10, y: 290 } : undefined}
                                     allowEscapeViewBox={true}
                                     wrapperStyle={{ zIndex: 100 }}
                                     contentStyle={{
@@ -240,15 +240,28 @@ export default function EngineeringComparisonDashboard() {
                                         border: '1px solid rgba(255,255,255,0.3)',
                                         borderRadius: '16px',
                                         backdropFilter: 'blur(12px)',
-                                        padding: isMobile ? '12px' : '16px',
-                                        boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+                                        padding: isMobile ? '10px' : '16px',
+                                        boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+                                        width: isMobile ? '160px' : 'auto',
+                                        fontSize: isMobile ? '12px' : '14px'
                                     }}
-                                    labelStyle={{ color: '#f1f5f9', fontWeight: 700, marginBottom: isMobile ? '8px' : '12px', fontSize: isMobile ? '13px' : '15px' }}
+                                    labelStyle={{
+                                        color: '#f1f5f9',
+                                        fontWeight: 700,
+                                        marginBottom: isMobile ? '6px' : '12px',
+                                        fontSize: isMobile ? '12px' : '15px',
+                                        whiteSpace: 'normal',
+                                        lineHeight: 1.2
+                                    }}
                                     formatter={(value, name) => {
                                         const color = name === 'Electrical Engineering' ? colors.electrical : colors.computer;
                                         return [<span style={{ color: color, fontWeight: 600 }}>{value}</span>, name];
                                     }}
-                                    itemStyle={{ fontSize: isMobile ? '12px' : '14px' }}
+                                    itemStyle={{
+                                        fontSize: isMobile ? '11px' : '14px',
+                                        padding: 0,
+                                        margin: 0
+                                    }}
                                     cursor={{ fill: 'rgba(255,255,255,0.05)' }}
                                 />
                                 <Legend
