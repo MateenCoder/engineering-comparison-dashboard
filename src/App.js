@@ -92,6 +92,38 @@ export default function EngineeringComparisonDashboard() {
         }
     ];
 
+    // Custom Radar Label (Tick) Component for better spacing and mobile interaction
+    const RadarTick = ({ payload, x, y, cx, cy, ...rest }) => {
+        const radius = Math.sqrt(Math.pow(x - cx, 2) + Math.pow(y - cy, 2));
+        const extraOffset = isMobile ? 25 : 15; // Increased spacing
+        const newRadius = radius + extraOffset;
+
+        const cos = (x - cx) / radius;
+        const sin = (y - cy) / radius;
+
+        const newX = cx + newRadius * cos;
+        const newY = cy + newRadius * sin;
+
+        return (
+            <text
+                {...rest}
+                x={newX}
+                y={newY}
+                textAnchor={newX > cx ? 'start' : newX < cx ? 'end' : 'middle'}
+                dominantBaseline="central"
+                className="cursor-pointer select-none"
+                style={{
+                    fill: '#f1f5f9',
+                    fontSize: isMobile ? '10px' : '12px',
+                    fontWeight: 500,
+                    pointerEvents: 'auto'
+                }}
+            >
+                {payload.value}
+            </text>
+        );
+    };
+
     // Reveal on scroll component
     // Direct static rendering - no animations
     return (
@@ -136,10 +168,14 @@ export default function EngineeringComparisonDashboard() {
                                 outerRadius={isMobile ? "65%" : "80%"}
                                 margin={isMobile ? { top: 10, right: 45, bottom: 0, left: 45 } : { top: 10, right: 30, bottom: 0, left: 30 }}
                             >
-                                <PolarGrid stroke="#ffffff30" strokeWidth={1.5} />
+                                <PolarGrid
+                                    stroke="#ffffff30"
+                                    strokeWidth={1.5}
+                                    style={{ pointerEvents: isMobile ? 'none' : 'auto' }}
+                                />
                                 <PolarAngleAxis
                                     dataKey="dimension"
-                                    tick={{ fill: '#f1f5f9', fontSize: isMobile ? 11 : 12, fontWeight: 500 }}
+                                    tick={<RadarTick cx="50%" cy="50%" />}
                                     stroke="#ffffff20"
                                 />
                                 <PolarRadiusAxis
@@ -157,6 +193,7 @@ export default function EngineeringComparisonDashboard() {
                                     fillOpacity={0.4}
                                     strokeWidth={3}
                                     isAnimationActive={false}
+                                    style={{ pointerEvents: isMobile ? 'none' : 'auto' }}
                                 />
                                 <Radar
                                     name="Computer Engineering"
@@ -166,6 +203,7 @@ export default function EngineeringComparisonDashboard() {
                                     fillOpacity={0.4}
                                     strokeWidth={3}
                                     isAnimationActive={false}
+                                    style={{ pointerEvents: isMobile ? 'none' : 'auto' }}
                                 />
                                 <Legend
                                     wrapperStyle={{ paddingTop: '50px' }}
