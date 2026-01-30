@@ -31,15 +31,21 @@ code {
     monospace;
 }
 
-/* Disable focus outline and tap highlight for charts */
+/* Global reset for chart interaction artifacts */
 .recharts-wrapper,
+.recharts-wrapper *,
 .recharts-surface,
-.recharts-legend-item {
+.recharts-surface *,
+.recharts-legend-item,
+.recharts-legend-item * {
   outline: none !important;
   -webkit-tap-highlight-color: transparent !important;
 }
 
-path.recharts-rectangle:focus,
-path.recharts-radar-polygon:focus {
+/* Specific focus state removal for SVG elements */
+svg:focus,
+path:focus,
+rect:focus,
+circle:focus {
   outline: none !important;
 }
