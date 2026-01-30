@@ -90,8 +90,8 @@ export default function EngineeringComparisonDashboard() {
         <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950 text-white p-4 md:p-8 gpu-layer">
             {/* Hero Header */}
             <header className="text-center mb-16">
-                <div className="inline-block mb-6 px-6 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10">
-                    <span className="text-sm font-medium bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                <div className="inline-block mb-6 px-4 py-1.5 rounded-lg bg-white/5 backdrop-blur-md border border-white/10 shadow-sm">
+                    <span className="text-xs md:text-sm font-semibold tracking-wide uppercase bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                         Engineering Comparison 2026
                     </span>
                 </div>
@@ -112,11 +112,11 @@ export default function EngineeringComparisonDashboard() {
             {/* RADAR CHART SECTION */}
             <section className="mb-16 gpu-layer">
                 <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
-                    <div className="flex items-center gap-2 mb-4">
-                        <div className="w-1 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
-                        <h2 className="text-2xl md:text-4xl font-bold">Qualitative Dimensions</h2>
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="w-1.5 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
+                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Qualitative Dimensions</h2>
                     </div>
-                    <p className="text-slate-400 mb-8 text-sm md:text-lg">Comparing key qualitative attributes across both engineering disciplines</p>
+                    <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Comparing key qualitative attributes across both engineering disciplines</p>
 
                     {/* THE ACTUAL RADAR CHART */}
                     <div className="w-full bg-slate-900/40 rounded-2xl p-4 md:p-8 border border-white/10" style={{ height: '400px', minHeight: '400px' }}>
@@ -125,14 +125,15 @@ export default function EngineeringComparisonDashboard() {
                                 <PolarGrid stroke="#ffffff30" strokeWidth={1.5} />
                                 <PolarAngleAxis
                                     dataKey="dimension"
-                                    tick={{ fill: '#e2e8f0', fontSize: 14, fontWeight: 600 }}
-                                    stroke="#ffffff40"
+                                    tick={{ fill: '#f1f5f9', fontSize: 12, fontWeight: 500 }}
+                                    stroke="#ffffff20"
                                 />
                                 <PolarRadiusAxis
                                     angle={90}
                                     domain={[0, 100]}
-                                    tick={{ fill: '#cbd5e1', fontSize: 13 }}
-                                    stroke="#ffffff40"
+                                    tick={{ fill: '#94a3b8', fontSize: 11, fontWeight: 500 }}
+                                    stroke="#ffffff10"
+                                    axisLine={false}
                                 />
                                 <Radar
                                     name="Electrical Engineering"
@@ -153,11 +154,12 @@ export default function EngineeringComparisonDashboard() {
                                     isAnimationActive={false}
                                 />
                                 <Legend
-                                    wrapperStyle={{ paddingTop: '30px' }}
+                                    wrapperStyle={{ paddingTop: '40px' }}
                                     iconType="circle"
+                                    iconSize={10}
                                     formatter={(value, entry) => {
                                         const color = entry.dataKey === 'electrical' ? colors.electrical : colors.computer;
-                                        return <span style={{ color: color, fontSize: '16px', fontWeight: 600 }}>{value}</span>;
+                                        return <span style={{ color: color, fontSize: '14px', fontWeight: 700, marginLeft: '4px' }}>{value}</span>;
                                     }}
                                 />
                                 <Tooltip
@@ -185,11 +187,11 @@ export default function EngineeringComparisonDashboard() {
             {/* BAR CHART SECTION */}
             <section className="mb-16 gpu-layer">
                 <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
-                    <div className="flex items-center gap-2 mb-4">
-                        <div className="w-1 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
-                        <h2 className="text-2xl md:text-4xl font-bold">Quantitative Benchmarks</h2>
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="w-1.5 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
+                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Quantitative Benchmarks</h2>
                     </div>
-                    <p className="text-slate-400 mb-8 text-sm md:text-lg">Hard data points comparing measurable metrics between both fields</p>
+                    <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Hard data points comparing measurable metrics between both fields</p>
 
                     {/* THE ACTUAL BAR CHART */}
                     <div className="w-full bg-slate-900/40 rounded-2xl p-4 md:p-8 border border-white/10" style={{ height: '400px', minHeight: '400px' }}>
@@ -208,9 +210,10 @@ export default function EngineeringComparisonDashboard() {
                                 <YAxis
                                     type="category"
                                     dataKey="metric"
-                                    width={120}
-                                    tick={{ fill: '#f1f5f9', fontSize: 11, fontWeight: 600 }}
-                                    stroke="#ffffff40"
+                                    width={160}
+                                    tick={{ fill: '#f1f5f9', fontSize: 12, fontWeight: 500, textAnchor: 'start' }}
+                                    dx={-150}
+                                    stroke="#ffffff20"
                                 />
                                 <Tooltip
                                     contentStyle={{
@@ -230,10 +233,12 @@ export default function EngineeringComparisonDashboard() {
                                     cursor={{ fill: 'rgba(255,255,255,0.05)' }}
                                 />
                                 <Legend
-                                    wrapperStyle={{ paddingTop: '30px' }}
+                                    wrapperStyle={{ paddingTop: '40px' }}
+                                    iconType="circle"
+                                    iconSize={10}
                                     formatter={(value, entry) => {
                                         const color = entry.dataKey === 'electrical' ? colors.electrical : colors.computer;
-                                        return <span style={{ color: color, fontSize: '16px', fontWeight: 600 }}>{value}</span>;
+                                        return <span style={{ color: color, fontSize: '14px', fontWeight: 700, marginLeft: '4px' }}>{value}</span>;
                                     }}
                                 />
                                 <Bar
@@ -259,11 +264,11 @@ export default function EngineeringComparisonDashboard() {
             {/* Feature Grid Comparison */}
             <section className="mb-16 gpu-layer">
                 <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
-                    <div className="flex items-center gap-2 mb-4">
-                        <div className="w-1 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
-                        <h2 className="text-2xl md:text-4xl font-bold">Feature Matrix</h2>
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="w-1.5 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
+                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Feature Matrix</h2>
                     </div>
-                    <p className="text-slate-400 mb-8 text-sm md:text-lg">Side-by-side comparison of core competencies</p>
+                    <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Side-by-side comparison of core competencies</p>
 
                     <div className="overflow-x-auto">
                         <table className="w-full">
@@ -324,11 +329,11 @@ export default function EngineeringComparisonDashboard() {
             {/* Use-Case Analysis */}
             <section className="mb-12 gpu-layer">
                 <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
-                    <div className="flex items-center gap-2 mb-4">
-                        <div className="w-1 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
-                        <h2 className="text-2xl md:text-4xl font-bold">Recommendations</h2>
+                    <div className="flex items-center gap-3 mb-4">
+                        <div className="w-1.5 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
+                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Recommendations</h2>
                     </div>
-                    <p className="text-slate-400 mb-8 text-sm md:text-lg">Which engineering path wins for different user profiles?</p>
+                    <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Which engineering path wins for different user profiles?</p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {useCases.map((useCase, index) => {
