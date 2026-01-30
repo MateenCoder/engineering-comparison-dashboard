@@ -135,8 +135,8 @@ export default function EngineeringComparisonDashboard() {
                                 data={radarData}
                                 cx="50%"
                                 cy="50%"
-                                outerRadius={isMobile ? "50%" : "80%"}
-                                margin={isMobile ? { top: 20, right: 40, bottom: 20, left: 40 } : { top: 20, right: 30, bottom: 20, left: 30 }}
+                                outerRadius={isMobile ? "55%" : "80%"}
+                                margin={isMobile ? { top: 20, right: 45, bottom: 20, left: 45 } : { top: 20, right: 30, bottom: 20, left: 30 }}
                             >
                                 <PolarGrid stroke="#ffffff30" />
                                 <PolarAngleAxis
