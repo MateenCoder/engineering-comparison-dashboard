@@ -95,7 +95,7 @@ export default function EngineeringComparisonDashboard() {
                         Engineering Comparison 2026
                     </span>
                 </div>
-                <h1 className="text-3xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight flex flex-col items-center tracking-tight">
+                <h1 className="text-4xl md:text-8xl lg:text-9xl font-bold mb-6 leading-tight flex flex-col items-center tracking-tighter md:tracking-tight">
                     <div className="flex items-center justify-center gap-2 md:gap-6">
                         <span style={{ color: colors.electrical }}>Electrical</span>
                         <span className="text-slate-200 text-xl md:text-5xl">vs</span>
@@ -114,7 +114,7 @@ export default function EngineeringComparisonDashboard() {
                 <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
                     <div className="flex items-center gap-3 mb-4">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
-                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Qualitative Dimensions</h2>
+                        <h2 className="text-xl md:text-3xl font-bold tracking-tight">Qualitative Dimensions</h2>
                     </div>
                     <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Comparing key qualitative attributes across both engineering disciplines</p>
 
@@ -125,8 +125,8 @@ export default function EngineeringComparisonDashboard() {
                                 data={radarData}
                                 cx="50%"
                                 cy="50%"
-                                outerRadius="65%"
-                                margin={{ top: 10, right: 30, bottom: 0, left: 30 }}
+                                outerRadius="70%"
+                                margin={{ top: 10, right: 40, bottom: 0, left: 40 }}
                             >
                                 <PolarGrid stroke="#ffffff30" strokeWidth={1.5} />
                                 <PolarAngleAxis
@@ -160,7 +160,7 @@ export default function EngineeringComparisonDashboard() {
                                     isAnimationActive={false}
                                 />
                                 <Legend
-                                    wrapperStyle={{ paddingTop: '40px' }}
+                                    wrapperStyle={{ paddingTop: '50px' }}
                                     iconType="circle"
                                     iconSize={10}
                                     formatter={(value, entry) => {
@@ -195,7 +195,7 @@ export default function EngineeringComparisonDashboard() {
                 <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
                     <div className="flex items-center gap-3 mb-4">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
-                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Quantitative Benchmarks</h2>
+                        <h2 className="text-xl md:text-3xl font-bold tracking-tight">Quantitative Benchmarks</h2>
                     </div>
                     <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Hard data points comparing measurable metrics between both fields</p>
 
@@ -272,7 +272,7 @@ export default function EngineeringComparisonDashboard() {
                 <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
                     <div className="flex items-center gap-3 mb-4">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
-                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Feature Matrix</h2>
+                        <h2 className="text-xl md:text-3xl font-bold tracking-tight">Feature Matrix</h2>
                     </div>
                     <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Side-by-side comparison of core competencies</p>
 
@@ -337,7 +337,7 @@ export default function EngineeringComparisonDashboard() {
                 <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
                     <div className="flex items-center gap-3 mb-4">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
-                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Recommendations</h2>
+                        <h2 className="text-xl md:text-3xl font-bold tracking-tight">Recommendations</h2>
                     </div>
                     <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Which engineering path wins for different user profiles?</p>
 
