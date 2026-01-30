@@ -31,15 +31,37 @@ code {
     monospace;
 }
 
-/* Disable focus outline and tap highlight for charts */
+/* Global reset for chart interaction artifacts */
 .recharts-wrapper,
+.recharts-wrapper *,
 .recharts-surface,
-.recharts-legend-item {
+.recharts-surface *,
+.recharts-legend-item,
+.recharts-legend-item *,
+.recharts-tooltip-wrapper,
+.recharts-tooltip-wrapper *,
+canvas,
+svg,
+svg * {
   outline: none !important;
+  box-shadow: none !important;
+  user-select: none !important;
   -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
 }
 
-path.recharts-rectangle:focus,
-path.recharts-radar-polygon:focus {
+/* Specific focus state removal for SVG and Canvas elements */
+svg:focus,
+path:focus,
+rect:focus,
+circle:focus,
+canvas:focus,
+.recharts-wrapper:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Kill generic focus rings on everything inside the dashboard container if necessary */
+[tabindex="-1"]:focus {
   outline: none !important;
 }
