@@ -230,6 +230,8 @@ export default function EngineeringComparisonDashboard() {
                                     stroke="#ffffff20"
                                 />
                                 <Tooltip
+                                    allowEscapeViewBox={{ x: false, y: false }}
+                                    wrapperStyle={{ zIndex: 100 }}
                                     contentStyle={{
                                         backgroundColor: 'rgba(15, 23, 42, 0.98)',
                                         border: '1px solid rgba(255,255,255,0.3)',
