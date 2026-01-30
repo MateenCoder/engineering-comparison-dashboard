@@ -118,12 +118,12 @@ export default function EngineeringComparisonDashboard() {
             </header>
 
             {/* RADAR CHART SECTION */}
-            <section className="mb-16">
+            <section className="mb-16 gpu-layer">
                 <div className="bg-slate-900/50 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
                     <div className="flex items-center gap-3 mb-6">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
                         <div>
-                            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">Qualitative Dimensions</h2>
+                            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2 stabilize">Qualitative Dimensions</h2>
                             <p className="text-slate-400 text-sm md:text-base leading-relaxed">Comparing key qualitative attributes across both engineering disciplines</p>
                         </div>
                     </div>
@@ -135,7 +135,7 @@ export default function EngineeringComparisonDashboard() {
                                 data={radarData}
                                 cx="50%"
                                 cy="50%"
-                                outerRadius={isMobile ? "55%" : "80%"}
+                                outerRadius={isMobile ? "60%" : "80%"}
                                 margin={isMobile ? { top: 20, right: 45, bottom: 20, left: 45 } : { top: 20, right: 30, bottom: 20, left: 30 }}
                             >
                                 <PolarGrid stroke="#ffffff30" />
@@ -189,6 +189,8 @@ export default function EngineeringComparisonDashboard() {
                                         return [<span style={{ color: color, fontWeight: 600 }}>{value}</span>, name];
                                     }}
                                     itemStyle={{ fontSize: '14px' }}
+                                    wrapperStyle={{ zIndex: 1000, pointerEvents: 'none' }}
+                                    position={isMobile ? { x: 10, y: 0 } : undefined}
                                 />
                             </RadarChart>
                         </ResponsiveContainer>
@@ -199,11 +201,13 @@ export default function EngineeringComparisonDashboard() {
             {/* BAR CHART SECTION */}
             <section className="mb-16 gpu-layer">
                 <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
-                    <div className="flex items-center gap-3 mb-4">
+                    <div className="flex items-center gap-3 mb-6">
                         <div className="w-1.5 h-8 bg-gradient-to-b from-purple-400 to-cyan-400 rounded-full"></div>
-                        <h2 className="text-xl md:text-3xl font-bold tracking-tight">Quantitative Benchmarks</h2>
+                        <div>
+                            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-2 stabilize">Quantitative Benchmarks</h2>
+                            <p className="text-slate-400 text-sm md:text-base leading-relaxed">Hard data points comparing measurable metrics between both fields</p>
+                        </div>
                     </div>
-                    <p className="text-slate-400 mb-10 text-sm md:text-base leading-relaxed">Hard data points comparing measurable metrics between both fields</p>
 
                     {/* THE ACTUAL BAR CHART */}
                     <div className="w-full bg-slate-900/40 rounded-2xl p-4 md:p-8 border border-white/10" style={{ height: '400px', minHeight: '400px' }}>
