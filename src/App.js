@@ -232,7 +232,7 @@ export default function EngineeringComparisonDashboard() {
                                     stroke="#ffffff20"
                                 />
                                 <Tooltip
-                                    position={isMobile ? { x: 10, y: 290 } : undefined}
+                                    position={isMobile ? { x: 10, y: 215 } : undefined}
                                     allowEscapeViewBox={true}
                                     wrapperStyle={{ zIndex: 100 }}
                                     contentStyle={{
@@ -240,9 +240,9 @@ export default function EngineeringComparisonDashboard() {
                                         border: '1px solid rgba(255,255,255,0.3)',
                                         borderRadius: '16px',
                                         backdropFilter: 'blur(12px)',
-                                        padding: isMobile ? '10px' : '16px',
+                                        padding: isMobile ? '8px' : '16px',
                                         boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
-                                        width: isMobile ? '160px' : 'auto',
+                                        width: isMobile ? '150px' : 'auto',
                                         fontSize: isMobile ? '12px' : '14px'
                                     }}
                                     labelStyle={{
