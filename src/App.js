@@ -230,22 +230,23 @@ export default function EngineeringComparisonDashboard() {
                                     stroke="#ffffff20"
                                 />
                                 <Tooltip
-                                    allowEscapeViewBox={{ x: false, y: false }}
+                                    position={isMobile ? { x: 10, y: 0 } : undefined}
+                                    allowEscapeViewBox={true}
                                     wrapperStyle={{ zIndex: 100 }}
                                     contentStyle={{
                                         backgroundColor: 'rgba(15, 23, 42, 0.98)',
                                         border: '1px solid rgba(255,255,255,0.3)',
                                         borderRadius: '16px',
                                         backdropFilter: 'blur(12px)',
-                                        padding: '16px',
+                                        padding: isMobile ? '12px' : '16px',
                                         boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
                                     }}
-                                    labelStyle={{ color: '#f1f5f9', fontWeight: 700, marginBottom: '12px', fontSize: '15px' }}
+                                    labelStyle={{ color: '#f1f5f9', fontWeight: 700, marginBottom: isMobile ? '8px' : '12px', fontSize: isMobile ? '13px' : '15px' }}
                                     formatter={(value, name) => {
                                         const color = name === 'Electrical Engineering' ? colors.electrical : colors.computer;
                                         return [<span style={{ color: color, fontWeight: 600 }}>{value}</span>, name];
                                     }}
-                                    itemStyle={{ fontSize: '14px' }}
+                                    itemStyle={{ fontSize: isMobile ? '12px' : '14px' }}
                                     cursor={{ fill: 'rgba(255,255,255,0.05)' }}
                                 />
                                 <Legend
