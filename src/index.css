@@ -17,9 +17,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
-  /* Stabilize whole viewport for interaction */
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 
 .gpu-layer {
@@ -28,10 +25,7 @@ body {
   -webkit-backface-visibility: hidden;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
-  perspective: 1000px;
-  -webkit-perspective: 1000px;
-  isolation: isolate;
-  /* Force layer creation and isolation */
+  /* Hardware acceleration without isolation artifacts */
 }
 
 .stabilize {
